@@ -44,23 +44,13 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 	else
 	{
-		tmp = (*head)->next;
+		(*head)->prev->next = (*head)->next;
 		free(*head);
-		*head = tmp;
-		if (tmp->next != NULL)
-		{
-			tmp->prev = tmp->next->prev;
-		}
-		/*
-		(*head)->next->prev = (*head)->prev;
-		free(*head);
-		(*head)->next->prev = (*head)->prev;
 		if ((*head)->next)
 		{
-			printf("I'm Here\n");
 			(*head)->next->prev = (*head)->prev;
 		}
-		*head = saved_head; */
+		*head = saved_head;
 	}
 	return (1);
 }
